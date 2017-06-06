@@ -2,6 +2,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import play.api.libs.json._
 import org.apache.spark.rdd._
+import spark_rake._
 import review._
 import java.time._
 
@@ -38,6 +39,9 @@ object main {
     }
     def main(arg: Array[String]) : Unit = {
 
+        val stopWords = SparkRake.stopWords
+        println(stopWords)
+        
         val sparkConf = (new SparkConf()).setAppName("SparkTweets").setMaster("local[4]")
         val sc = new SparkContext(sparkConf)
         sc.setLogLevel("WARN")
